@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "titre": "The Legend of Zelda: Breath of the Wild",
+    "genre": "Aventure",
+    "plateforme": "Nintendo Switch",
+    "annee": 2017
+  },
+  {
+    "id": "2",
+    "titre": "Elden Ring",
+    "genre": "Action-RPG",
+    "plateforme": "PC",
+    "annee": 2022
+  },
+  {
+    "id": "3",
+    "titre": "Hollow Knight",
+    "genre": "Metroidvania",
+    "plateforme": "PC",
+    "annee": 2017
+  }
+]
