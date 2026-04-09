@@ -4,9 +4,10 @@ import type { Game } from '../App';
 interface GameListProps {
   games: Game[];
   onDelete: (id: string) => void;
+  onEdit: (game: Game) => void;
 }
 
-export default function GameList({ games, onDelete }: GameListProps) {
+export default function GameList({ games, onDelete, onEdit }: GameListProps) {
   const navigate = useNavigate();
 
   if (games.length === 0)
@@ -17,16 +18,32 @@ export default function GameList({ games, onDelete }: GameListProps) {
       {games.map((game) => (
         <div key={game.id} className="col">
           <div className="card h-100 shadow-sm border-0">
+            {game.imageUrl && (
+              <img
+                src={game.imageUrl}
+                alt={game.titre}
+                className="card-img-top"
+                style={{ height: '180px', objectFit: 'cover' }}
+              />
+            )}
+
             <div className="card-body">
               <h5 className="card-title fw-bold text-dark">{game.titre}</h5>
               <h6 className="card-subtitle mb-3 text-muted">{game.genre}</h6>
             </div>
+
             <div className="card-footer bg-white border-0 d-flex justify-content-between pb-3">
               <button
                 onClick={() => navigate(`/game/${game.id}`)}
                 className="btn btn-outline-primary btn-sm"
               >
                 Détails
+              </button>
+              <button
+                onClick={() => onEdit(game)}
+                className="btn btn-outline-warning btn-sm"
+              >
+                Modifier 
               </button>
               <button
                 onClick={() => onDelete(game.id)}

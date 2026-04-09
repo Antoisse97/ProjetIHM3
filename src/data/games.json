@@ -4,20 +4,47 @@
     "titre": "The Legend of Zelda: Breath of the Wild",
     "genre": "Aventure",
     "plateforme": "Nintendo Switch",
-    "annee": 2017
+    "annee": 2017,
+    "imageUrl": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero"
   },
   {
     "id": "2",
     "titre": "Elden Ring",
     "genre": "Action-RPG",
     "plateforme": "PC",
-    "annee": 2022
+    "annee": 2022,
+    "imageUrl": "https://www.escapistmagazine.com/wp-content/uploads/2022/02/FLz1p-8VgAM0BYk.jpg"
   },
   {
     "id": "3",
     "titre": "Hollow Knight",
     "genre": "Metroidvania",
     "plateforme": "PC",
-    "annee": 2017
+    "annee": 2017,
+    "imageUrl": "https://wallpaper.dog/large/20555333.jpg"
+  },
+  {
+  "id": "4",
+  "titre": "Zuma Deluxe",
+  "genre": "Aventure",
+  "plateforme": "PC",
+  "annee": 2003,
+  "imageUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3330/header.jpg?t=1627918693"
+  },
+  {
+    "id": "5",
+    "titre": "Need For Speed: Most Wanted",
+    "genre": "Course",
+    "plateforme": "Console, PC",
+    "annee": 2012,
+    "imageUrl": "https://th.bing.com/th/id/R.dcb5de791639940b6ca8cc14e79494b4?rik=PO7zKN1XXQKiLQ&riu=http%3a%2f%2f4.bp.blogspot.com%2f-9FGvvW4uXjk%2fUNHcSKlZKjI%2fAAAAAAAAKYk%2fyAU41kLRX6Q%2fs1600%2fNeed_for_speed_most_wanted_2012_wallpapers%2b(3).jpg&ehk=VohvhEP%2bglaQ6SeXpT%2f443m18tAVJONN%2fEE9Tatqy5o%3d&risl=&pid=ImgRaw&r=0"
+  },
+  {
+    "id": "6",
+    "titre": "Qui veut gagner des millions ?",
+    "genre": "Quiz",
+    "plateforme": "Console, PC",
+    "annee": 2000,
+    "imageUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1356240/capsule_616x353_french.jpg?t=1726577043"
   }
 ]

@@ -24,14 +24,32 @@ export default function GameDetails({ games }: GameDetailsProps) {
 
   return (
     <div className="card shadow-sm border-0">
+      {game.imageUrl && (
+        <img
+          src={game.imageUrl}
+          alt={game.titre}
+          className="card-img-top"
+          style={{ maxHeight: '320px', objectFit: 'cover' }}
+        />
+      )}
+
       <div className="card-body">
         <h3 className="card-title fw-bold text-dark mb-3">{game.titre}</h3>
-        <p className="mb-1"><strong>Genre :</strong> {game.genre}</p>
-        <p className="mb-1"><strong>Plateforme :</strong> {game.plateforme}</p>
-        <p className="mb-1"><strong>Année :</strong> {game.annee}</p>
+        <p className="mb-1">
+          <strong>Genre :</strong> {game.genre}
+        </p>
+        <p className="mb-1">
+          <strong>Plateforme :</strong> {game.plateforme}
+        </p>
+        <p className="mb-1">
+          <strong>Année :</strong> {game.annee}
+        </p>
       </div>
       <div className="card-footer bg-white border-0">
-        <button className="btn btn-outline-secondary" onClick={() => navigate('/')}>
+        <button
+          className="btn btn-outline-secondary"
+          onClick={() => navigate('/')}
+        >
           Retour à la collection
         </button>
       </div>
