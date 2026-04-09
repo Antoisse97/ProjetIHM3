@@ -6,40 +6,63 @@ import GameForm from './components/GameForm';
 import GameDetails from './components/GameDetails';
 import gamesData from './data/games.json';
 
+export interface Game {
+  id: string;
+  titre: string;
+  genre: string;
+  plateforme: string;
+  annee: number;
+}
+
 export default function App() {
-  const [games, setGames] = useState(gamesData);
+  // état typé avec Game[]
+  const [games, setGames] = useState<Game[]>(gamesData);
   const [searchTerm, setSearchTerm] = useState('');
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleDelete = (id: string) => setGames(games.filter(game => game.id !== id));
-  
-  const handleAddGame = (newGame: any) => {
+  // fonctions typées
+  const handleDelete = (id: string) =>
+    setGames(games.filter((game) => game.id !== id));
+
+  const handleAddGame = (newGame: Game) => {
     setGames([...games, newGame]);
     setIsFormOpen(false);
   };
 
-  const filteredGames = games.filter(game => 
+  const filteredGames = games.filter((game) =>
     game.titre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <BrowserRouter>
-      <Layout title="Ma Collection de Jeux" searchTerm={searchTerm} onSearch={setSearchTerm}>
+      <Layout
+        title="Ma Collection de Jeux"
+        searchTerm={searchTerm}
+        onSearch={setSearchTerm}
+      >
         <Routes>
-          <Route path="/" element={
-            <>
-              <div className="d-flex justify-content-end mb-4">
-                <button className="btn btn-warning fw-bold" onClick={() => setIsFormOpen(true)}>
-                  <i className="fa-solid fa-plus me-2"></i> Ajouter un jeu
-                </button>
-              </div>
-              <GameList games={filteredGames} onDelete={handleDelete} />
-            </>
-          } />
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="d-flex justify-content-end mb-4">
+                  <button
+                    className="btn btn-warning fw-bold"
+                    onClick={() => setIsFormOpen(true)}
+                  >
+                    <i className="fa-solid fa-plus me-2"></i> Ajouter un jeu
+                  </button>
+                </div>
+                <GameList games={filteredGames} onDelete={handleDelete} />
+              </>
+            }
+          />
           <Route path="/game/:id" element={<GameDetails games={games} />} />
         </Routes>
 
-        {isFormOpen && <GameForm onClose={() => setIsFormOpen(false)} onSubmit={handleAddGame} />}
+        {isFormOpen && (
+          <GameForm onClose={() => setIsFormOpen(false)} onSubmit={handleAddGame} />
+        )}
       </Layout>
     </BrowserRouter>
   );

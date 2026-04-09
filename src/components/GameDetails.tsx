@@ -1,21 +1,40 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import type { Game } from '../App';
 
-export default function GameDetails({ games }: { games: any[] }) {
-  const { id } = useParams();
-  const game = games.find(g => g.id === id);
+interface GameDetailsProps {
+  games: Game[];
+}
 
-  if (!game) return <p className="text-danger">Jeu introuvable.</p>;
+export default function GameDetails({ games }: GameDetailsProps) {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  const game = games.find((g) => g.id === id);
+
+  if (!game) {
+    return (
+      <div>
+        <p className="text-danger mb-3">Jeu introuvable.</p>
+        <button className="btn btn-secondary" onClick={() => navigate('/')}>
+          Retour à la collection
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white p-4 rounded shadow-sm">
-      <Link to="/" className="btn btn-sm btn-outline-secondary mb-4">
-        <i className="fa-solid fa-arrow-left me-2"></i>Retour à la collection
-      </Link>
-      <h2 className="fw-bold">{game.titre}</h2>
-      <hr />
-      <p><strong>Genre :</strong> {game.genre}</p>
-      <p><strong>Plateforme :</strong> {game.plateforme}</p>
-      <p><strong>Année :</strong> {game.annee}</p>
+    <div className="card shadow-sm border-0">
+      <div className="card-body">
+        <h3 className="card-title fw-bold text-dark mb-3">{game.titre}</h3>
+        <p className="mb-1"><strong>Genre :</strong> {game.genre}</p>
+        <p className="mb-1"><strong>Plateforme :</strong> {game.plateforme}</p>
+        <p className="mb-1"><strong>Année :</strong> {game.annee}</p>
+      </div>
+      <div className="card-footer bg-white border-0">
+        <button className="btn btn-outline-secondary" onClick={() => navigate('/')}>
+          Retour à la collection
+        </button>
+      </div>
     </div>
   );
 }

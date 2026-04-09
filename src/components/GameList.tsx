@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import type { Game } from '../App';
 
-// Mettez à jour l'interface
 interface GameListProps {
-  games: any[];
+  games: Game[];
   onDelete: (id: string) => void;
 }
 
 export default function GameList({ games, onDelete }: GameListProps) {
   const navigate = useNavigate();
 
-  if (games.length === 0) return <p className="text-secondary">Aucun jeu trouvé.</p>;
+  if (games.length === 0)
+    return <p className="text-secondary">Aucun jeu trouvé.</p>;
 
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -21,9 +22,18 @@ export default function GameList({ games, onDelete }: GameListProps) {
               <h6 className="card-subtitle mb-3 text-muted">{game.genre}</h6>
             </div>
             <div className="card-footer bg-white border-0 d-flex justify-content-between pb-3">
-              {/* Nouvelle navigation ici */}
-              <button onClick={() => navigate(`/game/${game.id}`)} className="btn btn-outline-primary btn-sm">Détails</button>
-              <button onClick={() => onDelete(game.id)} className="btn btn-outline-danger btn-sm">Supprimer</button>
+              <button
+                onClick={() => navigate(`/game/${game.id}`)}
+                className="btn btn-outline-primary btn-sm"
+              >
+                Détails
+              </button>
+              <button
+                onClick={() => onDelete(game.id)}
+                className="btn btn-outline-danger btn-sm"
+              >
+                Supprimer
+              </button>
             </div>
           </div>
         </div>

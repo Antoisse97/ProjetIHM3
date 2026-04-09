@@ -1,65 +1,38 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { Game } from '../App';
 
 interface GameFormProps {
   onClose: () => void;
-  onSubmit: (data: any) => void;
+  onSubmit: (game: Game) => void;
 }
 
 export default function GameForm({ onClose, onSubmit }: GameFormProps) {
-  const [formData, setFormData] = useState({
-    titre: '',
-    genre: '',
-    plateforme: '',
-    annee: ''
-  });
+  const [titre, setTitre] = useState('');
+  const [genre, setGenre] = useState('');
+  const [plateforme, setPlateforme] = useState('');
+  const [annee, setAnnee] = useState<number | ''>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ ...formData, id: Date.now().toString() });
+
+    if (!titre || !genre || !plateforme || annee === '') return;
+
+    const newGame: Game = {
+      id: crypto.randomUUID(), // ou autre logique d'id
+      titre,
+      genre,
+      plateforme,
+      annee: Number(annee),
+    };
+
+    onSubmit(newGame);
   };
 
   return (
-    <div className="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center" style={{ zIndex: 1050 }}>
-      <div className="bg-white rounded p-4 shadow w-100" style={{ maxWidth: '500px' }}>
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="h5 fw-bold text-warning mb-0">Ajouter un jeu</h3>
-          <button type="button" onClick={onClose} className="btn-close"></button>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label small fw-bold text-secondary text-uppercase">Titre</label>
-            <input type="text" required className="form-control"
-              value={formData.titre}
-              onChange={(e) => setFormData({...formData, titre: e.target.value})} />
-          </div>
-          
-          <div className="mb-3">
-            <label className="form-label small fw-bold text-secondary text-uppercase">Genre</label>
-            <input type="text" required className="form-control"
-              value={formData.genre}
-              onChange={(e) => setFormData({...formData, genre: e.target.value})} />
-          </div>
-
-          <div className="row mb-4">
-            <div className="col">
-              <label className="form-label small fw-bold text-secondary text-uppercase">Plateforme</label>
-              <input type="text" required className="form-control"
-                value={formData.plateforme}
-                onChange={(e) => setFormData({...formData, plateforme: e.target.value})} />
-            </div>
-            <div className="col">
-              <label className="form-label small fw-bold text-secondary text-uppercase">Année</label>
-              <input type="number" required className="form-control"
-                value={formData.annee}
-                onChange={(e) => setFormData({...formData, annee: e.target.value})} />
-            </div>
-          </div>
-
-          <div className="d-flex justify-content-end gap-2 border-top pt-3">
-            <button type="button" onClick={onClose} className="btn btn-light text-secondary fw-bold">Annuler</button>
-            <button type="submit" className="btn btn-warning fw-bold">Enregistrer</button>
-          </div>
+    <div className="modal-backdrop">
+      <div className="modal-dialog">
+        <form onSubmit={handleSubmit} className="card p-3">
+          {/* champs du formulaire */}
         </form>
       </div>
     </div>
